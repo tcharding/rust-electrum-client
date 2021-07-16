@@ -18,7 +18,7 @@ path = "src/lib.rs"
 
 [dependencies]
 log = "^0.4"
-bitcoin = { version = "0.26", features = ["use-serde"] }
+bitcoin = { version = "0.26", features = ["use-serde"], git = "http://github.com/tcharding/rust-bitcoin", branch = "dogecoin" }
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = { version = "^1.0" }
 
