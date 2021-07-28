@@ -157,6 +157,11 @@ impl Client {
             url: url.to_string(),
         })
     }
+
+    /// Run the getinfo RPC method.
+    pub fn get_info(&self) -> Result<serde_json::Value, Error> {
+        impl_inner_call!(self, get_info)
+    }
 }
 
 impl ElectrumApi for Client {

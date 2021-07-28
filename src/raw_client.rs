@@ -171,6 +171,17 @@ impl RawClient<ElectrumPlaintextStream> {
 
         Ok(stream.into())
     }
+
+    pub fn get_info(&self) -> Result<serde_json::Value, Error> {
+        let req = Request::new_id(
+            self.last_id.fetch_add(1, Ordering::SeqCst),
+            "getinfo",
+            vec![],
+        );
+        let value = self.call(req)?;
+
+        Ok(serde_json::from_value(value)?)
+    }
 }
 
 fn connect_with_total_timeout<A: ToSocketAddrs>(
@@ -269,6 +280,10 @@ impl RawClient<ElectrumSslStream> {
 
         Ok(stream.into())
     }
+
+    pub fn get_info(&self) -> Result<serde_json::Value, Error> {
+        unimplemented!()
+    }
 }
 
 #[cfg(all(
@@ -365,6 +380,10 @@ impl RawClient<ElectrumSslStream> {
 
         Ok(stream.into())
     }
+
+    pub fn get_info(&self) -> Result<serde_json::Value, Error> {
+        unimplemented!()
+    }
 }
 
 #[cfg(any(feature = "default", feature = "proxy"))]
@@ -414,6 +433,10 @@ impl RawClient<ElectrumProxyStream> {
         };
 
         RawClient::new_ssl_from_stream(target, validate_domain, stream.into_inner())
+    }
+
+    pub fn get_info(&self) -> Result<serde_json::Value, Error> {
+        unimplemented!()
     }
 }
 
