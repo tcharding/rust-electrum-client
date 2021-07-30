@@ -18,7 +18,6 @@ path = "src/lib.rs"
 
 [dependencies]
 log = "^0.4"
-bitcoin = { version = "^0.27", features = ["use-serde"] }
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = { version = "^1.0" }
 
@@ -36,3 +35,9 @@ debug-calls = []
 proxy = ["socks"]
 use-rustls = ["webpki", "webpki-roots", "rustls"]
 use-openssl = ["openssl"]
+
+[dependencies.bitcoin]
+git = "ssh://git@github.com/tcharding/rust-bitcoin.git"
+version = "0.27"
+features = ["use-serde"]
+branch = "altcoin-support-v0.27.0"
